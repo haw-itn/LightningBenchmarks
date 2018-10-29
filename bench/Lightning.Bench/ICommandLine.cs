@@ -88,6 +88,10 @@ namespace Lightning.Bench
 			{
 				return new BashCommandLine();
 			}
+			else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+			{
+				return new BashCommandLine();
+			}
 			else
 			{
 				return new PowershellCommandLine();
