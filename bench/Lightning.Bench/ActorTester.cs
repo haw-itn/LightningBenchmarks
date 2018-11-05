@@ -51,8 +51,8 @@ namespace Lightning.Tests
 		{
 			RPCUser = Utils.GetVariable("TESTS_RPCUSER", "ceiwHEbqWI83");
 			RPCPassword = Utils.GetVariable("TESTS_RPCPASSWORD", "DwubwWsoo3");
-			RPCURL = Utils.GetVariable("TESTS_RPCURL", "http://127.0.0.1:24735/");
-			CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://127.0.0.1:{lightningPort}/");
+			RPCURL = Utils.GetVariable("TESTS_RPCURL", "http://127.0.0.1:43782/");
+			CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://{name}:{lightningPort}/");
 			Directory = Path.Combine(baseDirectory, name);
 			P2PHost = name;
 			Port = Utils.FreeTcpPort();
