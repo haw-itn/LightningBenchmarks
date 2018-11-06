@@ -217,7 +217,7 @@ namespace Lightning.Tests
 			}
 		}
 
-		int port = 9735;
+		int port = 9835;
 		public ActorTester CreateActor(string name)
 		{
 			var actor = new ActorTester(_Directory, name, port);

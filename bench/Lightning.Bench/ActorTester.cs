@@ -55,7 +55,8 @@ namespace Lightning.Tests
 			CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://{name}:{lightningPort}/");
 			Directory = Path.Combine(baseDirectory, name);
 			P2PHost = name;
-			Port = Utils.FreeTcpPort();
+			Port = 9735;
+			//Port = Utils.FreeTcpPort();
 		}
 
 		public async Task WaitRouteTo(ActorTester destination)
