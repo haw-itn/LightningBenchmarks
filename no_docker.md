@@ -240,7 +240,7 @@ bitcoin-cli -conf=/etc/bitcoin/bitcoin.conf generate 1
 cli/lightning-cli listpeers
 ```
 
-##### 支払い
+##### Payments
 `Node B`
 ```
 # copy output bolt11
@@ -302,30 +302,10 @@ socat TCP4-listen:9835,fork,reuseaddr UNIX-CONNECT:/home/ec2-user/.lightning/lig
 +                       CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://{name}:{lightningPort}/");
                         Directory = Path.Combine(baseDirectory, name);
                         P2PHost = name;
--                       Port = Utils.FreeTcpPort();
-+                       Port = 9735;
-+                       //Port = Utils.FreeTcpPort();
+                        Port = Utils.FreeTcpPort();
                 }
  
                 public async Task WaitRouteTo(ActorTester destination)
-
-
-diff --git a/bench/Lightning.Bench/ICommandLine.cs b/bench/Lightning.Bench/ICommandLine.cs
-index efa1be5..a406826 100644
---- a/bench/Lightning.Bench/ICommandLine.cs
-+++ b/bench/Lightning.Bench/ICommandLine.cs
-@@ -88,6 +88,10 @@ namespace Lightning.Bench
-                        {
-                                return new BashCommandLine();
-                        }
-+                       else if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-+                       {
-+                               return new BashCommandLine();
-+                       }
-                        else
-                        {
-                                return new PowershellCommandLine();
-
 
 
 diff --git a/bench/Lightning.Bench/Tester.cs b/bench/Lightning.Bench/Tester.cs
@@ -355,22 +335,3 @@ index 3e5de6e..7331f99 100644
                         foreach(var actor in actors)
                         {
                                 actor.Start();
-
-
-
-@@ -217,12 +217,12 @@ namespace Lightning.Tests
-                        }
-                }
- 
--               int port = 24736;
-+               int port = 9835;
-                public ActorTester CreateActor(string name)
-                {
-                        var actor = new ActorTester(_Directory, name, port);
-                        actors.Add(actor);
--                       port++;
-+                       //port++;
-                        return actor;
-                }
-
-```
