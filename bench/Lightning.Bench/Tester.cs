@@ -217,12 +217,12 @@ namespace Lightning.Tests
 			}
 		}
 
-		int port = 9835;
+		int port = 24736;
 		public ActorTester CreateActor(string name)
 		{
 			var actor = new ActorTester(_Directory, name, port);
 			actors.Add(actor);
-			//port++;
+			port++;
 			return actor;
 		}
 
