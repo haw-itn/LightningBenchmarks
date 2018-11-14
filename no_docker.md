@@ -274,6 +274,7 @@ bitcoin-cli -conf=/etc/bitcoin/bitcoin.conf generate 1
 
 #### EC2 Instance Configuration
 ##### Hosts
+Need to edit at all instance.
 `sudo vim /etc/hosts`
 ```
 <Alice IP> Alice
@@ -299,7 +300,7 @@ socat TCP4-listen:9835,fork,reuseaddr UNIX-CONNECT:/home/ec2-user/.lightning/lig
 -                       RPCURL = Utils.GetVariable("TESTS_RPCURL", "http://127.0.0.1:24735/");
 -                       CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://127.0.0.1:{lightningPort}/");
 +                       RPCURL = Utils.GetVariable("TESTS_RPCURL", "http://127.0.0.1:43782/");
-+                       CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://{name}:{lightningPort}/");
++                       CLightning = Utils.GetVariable("TESTS_CLIGHTNING", $"tcp://{name}:9835/");
                         Directory = Path.Combine(baseDirectory, name);
                         P2PHost = name;
                         Port = Utils.FreeTcpPort();
@@ -335,3 +336,21 @@ index 3e5de6e..7331f99 100644
                         foreach(var actor in actors)
                         {
                                 actor.Start();
+
+
+--- a/src/Common/CLightning/NodeInfo.cs
++++ b/src/Common/CLightning/NodeInfo.cs
+
+public NodeInfo(string nodeId, string host, int port)
+		{
+			if(host == null)
+				throw new ArgumentNullException(nameof(host));
+			if(nodeId == null)
+				throw new ArgumentNullException(nameof(nodeId));
+-                       Port = port;
++			Port = (port == 0) ? 9735 : port;
+			Host = host;
+			NodeId = nodeId;
+		}
+```
+

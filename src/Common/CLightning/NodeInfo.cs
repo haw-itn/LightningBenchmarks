@@ -40,7 +40,7 @@ namespace Common.CLightning
 				throw new ArgumentNullException(nameof(host));
 			if(nodeId == null)
 				throw new ArgumentNullException(nameof(nodeId));
-			Port = port;
+			Port = (port == 0) ? 9735 : port;
 			Host = host;
 			NodeId = nodeId;
 		}
